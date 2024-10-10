@@ -1,30 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="passarinho.MainPage">
+             x:Class="passarinho.MainPage"
+              Shell.NavBarIsVisible="false">
 
-    <Grid>
-        <Image Source="fundo.png"
-               VerticalOptionts="Fill"
-               HorizontalOpitions="Fill"
-               Aspect="AspectFill"/>
+             <Grid>
 
-        <Image Source="passarinho.png"
-               HeightRequest="50"
+             <Image Source="fundo.png"
+             Aspect="AspectFill"
+             HorizontalOptions="Fill"
+             VerticalOptions="Fill"/>
 
-               HorizontalOpitions="Start"/>
-        <Image Source="canocima.png"
-               Aspect="AspectFill"
-               VerticalOptions="Start"
-               HorizontalOptions="End "/>
-        <Image Source="canobaixo.png"
-               VerticalOptionts="End"
-               HorizontalOpitions="End"/>
+             <Image Source="canocima.jpg"
+             HeightRequest="300"
+             WidthRequest="100"
+             Aspect="AspectFit"
+             HorizontalOptions="End"
+             VerticalOptions="End"/>
 
-        <Image Source="chao.jpg"
-               VerticalOptionts="End"
-               HorizontalOpitions="Fill"/>
+             <Image Source="canobaixo.jpg"
+             HeightRequest="300"
+             WidthRequest="100"
+             Aspect="AspectFit"
+             HorizontalOptions="End"
+             VerticalOptions="Start"/>
 
-    </Grid>
+             <Image Source="passaro.png"
+             x:Name="passaro.png"
+             HeightRequest="50"
+             WidthRequest="70"
+             Margin="30,0,0,0"
+             HorizontalOptions="Start"
+             VerticalOptions="Center"/>
+
+             <Image Source="chao.png"
+             HeightRequest="90"
+             Aspect="AspectFill"
+             HorizontalOptions="Center"
+             VerticalOptions="End"/>
+             
+             </Grid>
 
 </ContentPage>
