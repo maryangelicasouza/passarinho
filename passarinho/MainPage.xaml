@@ -2,43 +2,62 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="passarinho.MainPage"
-              Shell.NavBarIsVisible="false">
+             Shell.NavBarIsVisible="false">
 
-             <Grid>
+    <Grid>
 
-             <Image Source="fundo.png"
-             Aspect="AspectFill"
-             HorizontalOptions="Fill"
-             VerticalOptions="Fill"/>
+        <Image Source="fundo.png"
+               Aspect="AspectFill"
+               HorizontalOptions="Fill"
+               VerticalOptions="Fill"/>
 
-             <Image Source="canocima.jpg"
-             HeightRequest="300"
-             WidthRequest="100"
-             Aspect="AspectFit"
-             HorizontalOptions="End"
-             VerticalOptions="End"/>
+        <Image Source="canocima.jpg"
+               x:Name="imgcanocima"
+               HeightRequest="300"
+               WidthRequest="100"
+               Aspect="AspectFit"
+               HorizontalOptions="End"
+               VerticalOptions="End"/>
 
-             <Image Source="canobaixo.jpg"
-             HeightRequest="300"
-             WidthRequest="100"
-             Aspect="AspectFit"
-             HorizontalOptions="End"
-             VerticalOptions="Start"/>
+        <Image Source="canobaixo.jpg"
+               x:Name="imgcanobaixo"
+               HeightRequest="300"
+               WidthRequest="100"
+               Aspect="AspectFit"
+               HorizontalOptions="End"
+               VerticalOptions="Start"/>
 
-             <Image Source="passaro.png"
-             x:Name="passaro.png"
-             HeightRequest="50"
-             WidthRequest="70"
-             Margin="30,0,0,0"
-             HorizontalOptions="Start"
-             VerticalOptions="Center"/>
+        <Image Source="passaro.png"
+               x:Name="Passaro"
+               HeightRequest="90"
+               WidthRequest="70"
+               Margin="30,0,0,0"
+               HorizontalOptions="Start"
+               VerticalOptions="Center"/>
 
-             <Image Source="chao.png"
-             HeightRequest="90"
-             Aspect="AspectFill"
-             HorizontalOptions="Center"
-             VerticalOptions="End"/>
-             
-             </Grid>
+        <Image Source="chao.jpg"
+               HeightRequest="90"
+               Aspect="AspectFill"
+               HorizontalOptions="Center"
+               VerticalOptions="End"/>
+
+        <Frame
+            IsVisible="true"
+            x:Name="FrameGameOver"
+            BackgroundColor="#99000000"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            CornerRadius="0">
+
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Oi"/>
+            </Frame.GestureRecognizers>
+            <Image Source= "inicio.png"
+             HeightRequest="195"
+            WidthRequest="160"/>
+
+        </Frame>
+
+    </Grid>
 
 </ContentPage>
