@@ -29,13 +29,14 @@
 
         <Image Source="passaro.png"
                x:Name="Passaro"
-               HeightRequest="90"
-               WidthRequest="70"
+               HeightRequest="110"
+               WidthRequest="80"
                Margin="30,0,0,0"
                HorizontalOptions="Start"
                VerticalOptions="Center"/>
 
         <Image Source="chao.jpg"
+                 x:Name ="chao"
                HeightRequest="90"
                Aspect="AspectFill"
                HorizontalOptions="Center"
