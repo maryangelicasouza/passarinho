@@ -13,7 +13,7 @@
 
         <Image Source="canocima.jpg"
                x:Name="imgcanocima"
-               HeightRequest="300"
+               HeightRequest="250"
                WidthRequest="100"
                Aspect="AspectFit"
                HorizontalOptions="End"
@@ -21,16 +21,16 @@
 
         <Image Source="canobaixo.jpg"
                x:Name="imgcanobaixo"
-               HeightRequest="300"
-               WidthRequest="100"
+               HeightRequest="620"
+               WidthRequest="30"
                Aspect="AspectFit"
                HorizontalOptions="End"
                VerticalOptions="Start"/>
 
         <Image Source="passaro.png"
                x:Name="Passaro"
-               HeightRequest="110"
-               WidthRequest="80"
+               HeightRequest="620"
+               WidthRequest="30"
                Margin="30,0,0,0"
                HorizontalOptions="Start"
                VerticalOptions="Center"/>
@@ -54,10 +54,14 @@
                 <TapGestureRecognizer Tapped="Oi"/>
             </Frame.GestureRecognizers>
             <Image Source= "inicio.png"
-             HeightRequest="195"
-            WidthRequest="160"/>
+             HeightRequest="200"
+            WidthRequest="180"/>
 
         </Frame>
+        
+        <Grid.GestureRecognizers>
+        <TapGestureRecognizer  Tapped="OnGridClieked"/>
+        </Grid.GestureRecognizers>
 
     </Grid>
 
