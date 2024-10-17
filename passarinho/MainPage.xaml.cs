@@ -11,12 +11,12 @@ public partial class MainPage : ContentPage
 	double larguraJanela = 0;
 	double alturaJanela = 0;
 	int velocidade = 15;
-	const int forcaPulo=30;
-	const int maxTempoPulando=3;//frames
-	bool estaPulando =false;
-	int tempoPulando=0;
-    const int aberturaMinima= 200;
-	int score =0;
+	const int forcaPulo = 30;
+	const int maxTempoPulando = 3;//frames
+	bool estaPulando = false;
+	int tempoPulando = 0;
+	const int aberturaMinima = 50;
+	int score = 0;
 
 
 
@@ -33,10 +33,11 @@ public partial class MainPage : ContentPage
 	{
 		while (!estaMorto)
 
-		{if(estaPulando)
-			  AplicaPulo();
-			  else 
-			  AplicaGravidade();
+		{
+			if (estaPulando)
+				AplicaPulo();
+			else
+				AplicaGravidade();
 			GerenciaCanos();
 			if (VerificaColisao())
 			{
@@ -45,7 +46,7 @@ public partial class MainPage : ContentPage
 				break;
 			}
 			await Task.Delay(tempoEntreFrames);
-			
+
 
 		}
 	}
@@ -54,13 +55,17 @@ public partial class MainPage : ContentPage
 	{
 		FrameGameOver.IsVisible = false;
 		estaMorto = false;
+
 		Inicializar();
 		Desenha();
+
+
 	}
 
 	void Inicializar()
 	{
 		Passaro.TranslationY = 0;
+		score = 0;
 	}
 
 
@@ -77,17 +82,19 @@ public partial class MainPage : ContentPage
 		imgcanobaixo.TranslationX -= velocidade;
 		if (imgcanobaixo.TranslationX < -larguraJanela)
 		{
-		imgcanobaixo.TranslationX = 0;
 			imgcanobaixo.TranslationX = 0;
-			var alturaMax= -100;
-			var  alturaMin=-imgcanobaixo.HeightRequest;
-			imgcanocima.TranslationY= Random.Shared.Next ((int) alturaMin, (int) alturaMax);
-			imgcanobaixo.TranslationY= imgcanocima.TranslationY +aberturaMinima +imgcanobaixo.HeightRequest;
+			imgcanocima.TranslationX = 0;
+			var alturaMax = -100;
+			var alturaMin = -imgcanobaixo.HeightRequest;
+			imgcanocima.TranslationY = Random.Shared.Next((int)alturaMin, (int)alturaMax);
+			imgcanobaixo.TranslationY = imgcanocima.TranslationY + aberturaMinima + imgcanobaixo.HeightRequest;
 
-			score ++;
-			LabelScore.Text = "Canos pulados:" + score.ToString( " D3");
+			score++;
+			labelScore.Text = "Canos :" + score.ToString("D3");
+
+
 		}
-	    
+
 	}
 
 	bool VerificaColisao()
@@ -120,18 +127,18 @@ public partial class MainPage : ContentPage
 
 	void AplicaPulo()
 	{
-		Passaro.TranslationY-= forcaPulo;
-		tempoPulando ++;
-		if (tempoPulando>= maxTempoPulando)
+		Passaro.TranslationY -= forcaPulo;
+		tempoPulando++;
+		if (tempoPulando >= maxTempoPulando)
 		{
-			estaPulando= false;
-			tempoPulando=0;
+			estaPulando = false;
+			tempoPulando = 0;
 		}
 	}
 
-	void OnGridClieked (Object s, TappedEventArgs a)
+	void OnGridClieked(Object s, TappedEventArgs a)
 	{
-		estaPulando= true;
+		estaPulando = true;
 	}
 
 }
