@@ -10,12 +10,13 @@ public partial class MainPage : ContentPage
 	bool estaMorto = false;
 	double larguraJanela = 0;
 	double alturaJanela = 0;
-	int velocidade = 20;
+	int velocidade = 15;
 	const int forcaPulo=30;
 	const int maxTempoPulando=3;//frames
 	bool estaPulando =false;
 	int tempoPulando=0;
-    const int aberturaMinima= 100;
+    const int aberturaMinima= 200;
+	int score =0;
 
 
 
@@ -76,10 +77,15 @@ public partial class MainPage : ContentPage
 		imgcanobaixo.TranslationX -= velocidade;
 		if (imgcanobaixo.TranslationX < -larguraJanela)
 		{
+		imgcanobaixo.TranslationX = 0;
+			imgcanobaixo.TranslationX = 0;
 			var alturaMax= -100;
 			var  alturaMin=-imgcanobaixo.HeightRequest;
 			imgcanocima.TranslationY= Random.Shared.Next ((int) alturaMin, (int) alturaMax);
-			imgcanobaixo.TranslationY= imgcanocima.TranslationY +aberturaMinima; //+imgcanobaixo.HeightRequest
+			imgcanobaixo.TranslationY= imgcanocima.TranslationY +aberturaMinima +imgcanobaixo.HeightRequest;
+
+			score ++;
+			LabelScore.Text = "Canos pulados:" + score.ToString( " D3");
 		}
 	    
 	}
