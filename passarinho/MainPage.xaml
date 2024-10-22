@@ -23,7 +23,6 @@
                      x:Name="imgcanocima"
                      HeightRequest="650"
                      WidthRequest="50"
-                     BackgroundColor=" white"
                      Aspect="AspectFit"
                      HorizontalOptions="End"
                      VerticalOptions="Start"/>
@@ -32,7 +31,6 @@
                      x:Name="imgcanobaixo"
                      HeightRequest="650"
                      WidthRequest="50"
-                     BackgroundColor=" white"
                      Aspect="AspectFit"
                      HorizontalOptions="End"
                      VerticalOptions="End"/>
@@ -41,8 +39,8 @@
                      x:Name="Passaro"
                      HeightRequest="50"
                      WidthRequest="70"
-                     Margin="30,0,0,0"
-                     HorizontalOptions="Start"
+                     BackgroundColor="White"
+                     HorizontalOptions="Center"
                      VerticalOptions="Center"/>
 
               <Image Source="chao.jpg"
@@ -70,11 +68,11 @@
                             x:Name="inicio"
                             BackgroundColor="green"
                             TextColor="Black"
-                            Text="seu Score davez é :"
-                            HeightRequest=" 130"
+                            Text="Você passou por 000 canos!"
+                            HeightRequest=" 160"
                             FontSize=" 20"
-                            WidthRequest="80"
-                            Margin=" 0,50,0,50"
+                            WidthRequest="100"
+                            Margin=" 0,70,0,70"
                             HorizontalOptions="Center"
                             VerticalOptions="Center"/>
 
