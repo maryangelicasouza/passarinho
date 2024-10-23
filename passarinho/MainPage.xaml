@@ -19,26 +19,22 @@
                      HorizontalOptions="StartAndExpand"
                      VerticalOptions="Start"/>
 
-              <Image Source="canocimaa.jpg"
+              <Image Source="canocima.png"
                      x:Name="imgcanocima"
-                     HeightRequest="650"
-                     WidthRequest="50"
-                     Aspect="AspectFit"
+                     Aspect="Fill"
                      HorizontalOptions="End"
                      VerticalOptions="Start"/>
 
-              <Image Source="canobaixo.jpg"
+              <Image Source="canobaixo.png"
                      x:Name="imgcanobaixo"
-                     HeightRequest="650"
-                     WidthRequest="50"
-                     Aspect="AspectFit"
+                     Aspect="Fill"
                      HorizontalOptions="End"
                      VerticalOptions="End"/>
 
               <Image Source="passaro.png"
                      x:Name="Passaro"
-                     HeightRequest="50"
-                     WidthRequest="70"
+                     HeightRequest="80"
+                     WidthRequest="80"
                      BackgroundColor="White"
                      HorizontalOptions="Center"
                      VerticalOptions="Center"/>

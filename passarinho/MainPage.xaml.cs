@@ -1,12 +1,10 @@
-﻿using Windows.Security.EnterpriseData;
-
-namespace passarinho;
+﻿namespace passarinho;
 
 public partial class MainPage : ContentPage
 {
 
 	const int gravidade = 5;
-	const int tempoEntreFrames = 25;
+	const int tempoEntreFrames = 20;
 	bool estaMorto = false;
 	double larguraJanela = 0;
 	double alturaJanela = 0;
@@ -15,7 +13,7 @@ public partial class MainPage : ContentPage
 	const int maxTempoPulando = 3;//frames
 	bool estaPulando = false;
 	int tempoPulando = 0;
-	const int aberturaMinima = 300;
+	const int aberturaMinima = 200;
 	int score = 0;
 
 
@@ -32,22 +30,22 @@ public partial class MainPage : ContentPage
 	public async void Desenha()
 	{
 		while (!estaMorto)
-
 		{
 			if (estaPulando)
 				AplicaPulo();
 			else
 				AplicaGravidade();
+
 			GerenciaCanos();
+			
 			if (VerificaColisao())
 			{
 				estaMorto = true;
 				FrameGameOver.IsVisible = true;
 				break;
 			}
+			
 			await Task.Delay(tempoEntreFrames);
-
-
 		}
 	}
 
@@ -64,24 +62,25 @@ public partial class MainPage : ContentPage
 
 	void Inicializar()
 	{
-		Passaro.TranslationY = 0;
 		score = 0;
 		imgcanocima.TranslationX = -larguraJanela;
 		imgcanobaixo.TranslationX = -larguraJanela;
-		Passaro.TranslationX=0;
 		Passaro.TranslationY = 0;
-		Passaro.TranslationX=0;
-		Passaro.TranslationX=0;
 		GerenciaCanos();
-
 	}
-
 
 	protected override void OnSizeAllocated(double w, double h)
 	{
 		base.OnSizeAllocated(w, h);
 		larguraJanela = w;
 		alturaJanela = h;
+		if (h > 0)
+		{
+			imgcanocima.HeightRequest  = alturaJanela;
+			imgcanobaixo.HeightRequest = alturaJanela;
+			imgcanocima.WidthRequest   =  50 * 715 / alturaJanela;
+			imgcanobaixo.WidthRequest  =  50 * 715 / alturaJanela;
+		}
 	}
 
 	void GerenciaCanos()
@@ -92,35 +91,27 @@ public partial class MainPage : ContentPage
 		{
 			imgcanobaixo.TranslationX = 0;
 			imgcanocima.TranslationX = 0;
-			var alturaMax = -100;
-			var alturaMin = -imgcanobaixo.HeightRequest;
+			var alturaMax = -(imgcanocima.HeightRequest * 0.1);
+			var alturaMin = -imgcanocima.HeightRequest;
 			imgcanocima.TranslationY = Random.Shared.Next((int)alturaMin, (int)alturaMax);
-			imgcanobaixo.TranslationY = imgcanocima.TranslationY + aberturaMinima + imgcanobaixo.HeightRequest;
+			imgcanobaixo.TranslationY = imgcanocima.TranslationY + aberturaMinima + imgcanocima.HeightRequest;
 
 			score++;
 			labelScore.Text = "Canos :" + score.ToString("D3");
 			inicio.Text = "Você passou por " + score.ToString("D3") + " canos!";
-
-
+			if (score % 2 == 0)
+				velocidade++;
 		}
-
 	}
 
 	bool VerificaColisao()
 	{
-		if (!estaMorto)
-		{
-			if (VerificaColisaoTeto() ||
-			VerificaColisaoChao() ||
-			VerificaColisaoCanoCima()||
-			VerificaColisaoCanobaixo()
-			)
-			{
-				return true;
-			}
-		}
-		return false;
+		return VerificaColisaoTeto() ||
+				VerificaColisaoChao() ||
+				VerificaColisaoCanoCima() ||
+				VeficaColisaoCanoBaixo();
 	}
+
 	bool VerificaColisaoTeto()
 	{
 		var minY = -alturaJanela / 2;
@@ -139,31 +130,32 @@ public partial class MainPage : ContentPage
 
 	bool VerificaColisaoCanoCima()
 	{
-		var posHPassaro= (larguraJanela/2 )- (Passaro.WidthRequest/2 );
-		var posVPassaro= (alturaJanela/2)- (Passaro.HeightRequest/2 ) + Passaro.TranslationY;
-		if ( posHPassaro >=Math.Abs (imgcanocima.TranslationX) -imgcanocima.WidthRequest &&
-		posHPassaro <=Math.Abs (imgcanocima.TranslationX) + imgcanocima. WidthRequest &&
-		posVPassaro <= imgcanocima.HeightRequest + imgcanocima. TranslationY)
+		var posHPassaro = (larguraJanela / 2) - (Passaro.WidthRequest / 2);
+		var posVPassaro = (alturaJanela / 2) - (Passaro.HeightRequest / 2) + Passaro.TranslationY;
+		if (posHPassaro >= Math.Abs(imgcanocima.TranslationX) - imgcanocima.WidthRequest &&
+			posHPassaro <= Math.Abs(imgcanocima.TranslationX) + imgcanocima.WidthRequest &&
+			posVPassaro <= imgcanocima.HeightRequest + imgcanocima.TranslationY)
 		{
 			return true;
 		}
-		else 
+		else
 		{
 			return false;
 		}
 	}
+	bool VeficaColisaoCanoBaixo()
 
-	bool VerificaColisaoCanobaixo()
 	{
-		var posHPassaro= (larguraJanela/2 )- (Passaro.WidthRequest/2 );
-		var posVPassaro= (alturaJanela/2)- (Passaro.HeightRequest/2 ) + Passaro.TranslationY;
-		if ( posHPassaro <=Math.Abs (imgcanobaixo.TranslationX) -imgcanobaixo.WidthRequest &&
-		posHPassaro >=Math.Abs (imgcanobaixo.TranslationX) + imgcanobaixo. WidthRequest &&
-		posVPassaro >= imgcanobaixo.HeightRequest + imgcanobaixo. TranslationY)
+		var posHPassaro = (larguraJanela / 2) - (Passaro.WidthRequest / 2);
+		var posVPassaro = (alturaJanela / 2) + (Passaro.HeightRequest / 2) + Passaro.TranslationY;
+		var yMaxCano = imgcanocima.HeightRequest + imgcanocima.TranslationY + aberturaMinima;
+		if (posHPassaro >= Math.Abs(imgcanobaixo.TranslationX) - imgcanobaixo.WidthRequest &&
+			posHPassaro <= Math.Abs(imgcanobaixo.TranslationX) + imgcanobaixo.WidthRequest &&
+			posVPassaro >= yMaxCano)
 		{
 			return true;
 		}
-		else 
+		else
 		{
 			return false;
 		}
