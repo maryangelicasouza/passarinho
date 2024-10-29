@@ -27,7 +27,16 @@ public partial class MainPage : ContentPage
 	{
 		Passaro.TranslationY += gravidade;
 	}
-	public async void Desenha()
+
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+			SoundHelper.Play("fundo.wav", true);
+			
+    }
+
+    public async void Desenha()
 	{
 		while (!estaMorto)
 		{
@@ -41,6 +50,7 @@ public partial class MainPage : ContentPage
 			if (VerificaColisao())
 			{
 				estaMorto = true;
+				SoundHelper.Play("morto.wav");
 				FrameGameOver.IsVisible = true;
 				break;
 			}
@@ -67,6 +77,8 @@ public partial class MainPage : ContentPage
 		imgcanobaixo.TranslationX = -larguraJanela;
 		Passaro.TranslationY = 0;
 		GerenciaCanos();
+		score=0;
+		
 	}
 
 	protected override void OnSizeAllocated(double w, double h)
@@ -97,6 +109,7 @@ public partial class MainPage : ContentPage
 			imgcanobaixo.TranslationY = imgcanocima.TranslationY + aberturaMinima + imgcanocima.HeightRequest;
 
 			score++;
+				SoundHelper.Play("pontuacao.wav.wav");
 			labelScore.Text = "Canos :" + score.ToString("D3");
 			inicio.Text = "Você passou por " + score.ToString("D3") + " canos!";
 			if (score % 2 == 0)

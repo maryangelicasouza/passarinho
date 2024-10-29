@@ -62,7 +62,7 @@
                      
                        <Label
                             x:Name="inicio"
-                            BackgroundColor="green"
+                            BackgroundColor="#7fa653"
                             TextColor="Black"
                             Text="Você passou por 000 canos!"
                             HeightRequest=" 160"
