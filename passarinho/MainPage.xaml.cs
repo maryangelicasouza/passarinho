@@ -66,6 +66,7 @@ public partial class MainPage : ContentPage
 
 		Inicializar();
 		Desenha();
+			SoundHelper.Play("começo.wav");
 
 
 	}
@@ -109,7 +110,7 @@ public partial class MainPage : ContentPage
 			imgcanobaixo.TranslationY = imgcanocima.TranslationY + aberturaMinima + imgcanocima.HeightRequest;
 
 			score++;
-				SoundHelper.Play("pontuacao.wav.wav");
+				SoundHelper.Play("pontuacao.wav");
 			labelScore.Text = "Canos :" + score.ToString("D3");
 			inicio.Text = "Você passou por " + score.ToString("D3") + " canos!";
 			if (score % 2 == 0)
