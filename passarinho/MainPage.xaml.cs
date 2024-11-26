@@ -66,7 +66,7 @@ public partial class MainPage : ContentPage
 
 		Inicializar();
 		Desenha();
-			SoundHelper.Play("começo.wav");
+			
 
 
 	}
